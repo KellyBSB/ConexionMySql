@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="NotasPDF" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fd1c2fbd-f871-48e8-87dc-46575b7dd3fd">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ApellidoEstudiante" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     materias.`NombreMateria` AS materias_NombreMateria,
+     materias.`Curso` AS materias_Curso,
+     materias.`NombreEst` AS materias_NombreEst,
+     materias.`ApellidoEst` AS materias_ApellidoEst,
+     materias.`Nota` AS materias_Nota
+FROM
+     `materias` materias
+where materias.ApellidoEst=$P!{ApellidoEstudiante}]]>
+	</queryString>
+	<field name="materias_NombreMateria" class="java.lang.String"/>
+	<field name="materias_Curso" class="java.lang.String"/>
+	<field name="materias_NombreEst" class="java.lang.String"/>
+	<field name="materias_ApellidoEst" class="java.lang.String"/>
+	<field name="materias_Nota" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="106" y="14" width="392" height="41" uuid="a9c0914c-1ea9-4552-88e6-68da39d59ce5"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[	ESCUELA POLITECNICA NACIONAL]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="35" width="372" height="20" uuid="6b058f14-c4d8-4790-80c9-2cce3c46d980"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[       ANÁLISIS DE SISTEMAS INFORMATICOS]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="55" width="345" height="20" uuid="68e08e72-61bc-49b3-8353-e9b9e81fb61b"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[                PROGRAMACIÓN AVANZADA]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="14" y="0" width="92" height="79" uuid="036ec8aa-f33d-4ec2-97f4-b2fb1a08141b"/>
+				<imageExpression><![CDATA["C:\\Users\\HP\\Desktop\\epnLogo.png"]]></imageExpression>
+			</image>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="472" y="0" width="100" height="20" uuid="34dd502a-c059-4416-a583-6096d8e5a5f1"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="261" y="0" width="181" height="35" uuid="e37ba6ea-6d02-40c4-9c94-ae8570693369"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[Notas ]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="26" y="0" width="100" height="20" uuid="0c9b19be-cb41-4c39-92a0-3104224da87b"/>
+				<text><![CDATA[Materia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="126" y="0" width="100" height="20" uuid="10e00114-1542-43da-9689-a5d04e1cea1a"/>
+				<text><![CDATA[Curso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="226" y="0" width="100" height="20" uuid="936a5f45-eb8e-416b-be68-1b807c8f6063"/>
+				<text><![CDATA[Nombre Estudiante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="0" width="100" height="20" uuid="2a7b73b0-25e8-450d-8487-98fc7d7bbfd4"/>
+				<text><![CDATA[Apellido Estudiante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="426" y="0" width="72" height="20" uuid="c1a09e80-db30-41c8-ad66-a3da79096801"/>
+				<text><![CDATA[Nota]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="26" y="0" width="100" height="20" uuid="72af5250-7281-4f14-9dd2-f5163e71593d"/>
+				<textFieldExpression><![CDATA[$F{materias_NombreMateria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="126" y="0" width="100" height="20" uuid="0a102aa1-7b49-463d-942c-1418cfb06513"/>
+				<textFieldExpression><![CDATA[$F{materias_Curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="226" y="0" width="100" height="20" uuid="1328a3d6-d2cd-4b23-bcf7-f96af51c43e1"/>
+				<textFieldExpression><![CDATA[$F{materias_NombreEst}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="326" y="0" width="100" height="20" uuid="66063f5a-6592-4bbf-9d78-bd69219354d1"/>
+				<textFieldExpression><![CDATA[$F{materias_NombreEst}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="426" y="0" width="72" height="20" uuid="28de4628-2f5a-4bcf-8da4-592c0e0960b9"/>
+				<textFieldExpression><![CDATA[$F{materias_Nota}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="219" y="12" width="80" height="20" uuid="bc8a7c69-7ad1-4ef7-8ed1-7c964470767f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="312" y="12" width="40" height="20" uuid="8867fac4-ce3d-4850-b3e9-397b4ed75fe8"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
